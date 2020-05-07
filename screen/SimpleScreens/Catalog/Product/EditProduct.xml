@@ -326,11 +326,15 @@ along with this software (see the LICENSE.md file). If not, see
                     <container-dialog id="AddLocationDialog" button-text="Add Location">
                         <form-single name="CreateProductLocation" transition="createProductLocation">
                             <field name="productId"><default-field><hidden/></default-field></field>
+                                
+                            <field name="facilityTypeEnumId"><default-field><hidden default-value="FcTpWarehouse"/></default-field></field>
 
                             <field name="facilityId"><default-field title="Facility"><drop-down>
-                                <dynamic-options transition="getFacilityList" server-search="true" min-length="0"/>
+                                <dynamic-options transition="getFacilityList" server-search="true" min-length="0">
+                                    <depends-on field="facilityTypeEnumId"/></dynamic-options>
                             </drop-down></default-field></field>
-                            <field name="locationSeqId"><default-field title="Location"><drop-down>
+
+                             <field name="locationSeqId"><default-field title="Location"><drop-down>
                                 <dynamic-options transition="getLocationList" server-search="true" min-length="0">
                                     <depends-on field="facilityId"/></dynamic-options>
                             </drop-down></default-field></field>
